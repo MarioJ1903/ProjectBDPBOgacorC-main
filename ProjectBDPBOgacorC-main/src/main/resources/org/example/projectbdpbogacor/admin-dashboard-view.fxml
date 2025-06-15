@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectbdpbogacor.Admin.AdmindsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <children>
+                <Label fx:id="welcomeUserLabel" text="Welcome, Admin!">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleLogout" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="adminTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Manage Users">
+                    <content>
+                        <GridPane hgap="20.0" vgap="10.0">
+                            <padding><Insets top="15" right="15" bottom="15" left="15" /></padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;">
+                                    <children>
+                                        <Label text="Add New User">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <GridPane hgap="10" vgap="5">
+                                            <columnConstraints><ColumnConstraints hgrow="NEVER" /><ColumnConstraints hgrow="ALWAYS" /></columnConstraints>
+                                            <children>
+                                                <Label text="Role:" GridPane.rowIndex="0" />
+                                                <ChoiceBox fx:id="newRoleChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                                                <Label text="User ID:" GridPane.rowIndex="1" />
+                                                <TextField fx:id="newUserIdField" editable="false" promptText="Auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                                <Label text="Username:" GridPane.rowIndex="2" />
+                                                <TextField fx:id="newUsernameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                                <Label text="Password:" GridPane.rowIndex="3" />
+                                                <PasswordField fx:id="newPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                                <Label text="NIS/NIP:" GridPane.rowIndex="4" />
+                                                <TextField fx:id="newNisNipField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                                <Label text="Full Name:" GridPane.rowIndex="5" />
+                                                <TextField fx:id="newNameField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                                <Label text="Gender:" GridPane.rowIndex="6" />
+                                                <ChoiceBox fx:id="newGenderChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                                                <Label text="Address:" GridPane.rowIndex="7" />
+                                                <TextField fx:id="newAddressField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                                                <Label text="Email:" GridPane.rowIndex="8" />
+                                                <TextField fx:id="newEmailField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+                                                <Label text="Phone Number:" GridPane.rowIndex="9" />
+                                                <TextField fx:id="newPhoneNumberField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                            </children>
+                                        </GridPane>
+                                        <Button onAction="#handleAddUser" text="Add User" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;" GridPane.columnIndex="1">
+                                    <children>
+                                        <Label text="Edit / Delete User">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <HBox spacing="10" alignment="CENTER_LEFT">
+                                            <Label text="Filter by:"/>
+                                            <ChoiceBox fx:id="filterbyRoleChoiceBox" prefWidth="150"/>
+                                            <ChoiceBox fx:id="filterYearsChoiceBox" prefWidth="120"/>
+                                            <Button fx:id="searchUserButton" onAction="#filterUsersAndRefreshSearch" text="Search"/>
+                                        </HBox>
+                                        <ChoiceBox fx:id="selectUserForEditDeleteChoiceBox" prefWidth="350.0" />
+
+                                        <GridPane hgap="10" vgap="5">
+                                            <columnConstraints><ColumnConstraints hgrow="NEVER" /><ColumnConstraints hgrow="ALWAYS" /></columnConstraints>
+                                            <children>
+                                                <Label text="User ID:" GridPane.rowIndex="0" />
+                                                <TextField fx:id="editUserIdField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                                <Label text="Username:" GridPane.rowIndex="1" />
+                                                <TextField fx:id="editUsernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                                <Label text="New Password:" GridPane.rowIndex="2" />
+                                                <PasswordField fx:id="editPasswordField" promptText="Leave blank to keep old" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                                <Label text="NIS/NIP:" GridPane.rowIndex="3" />
+                                                <TextField fx:id="editNisNipField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                                <Label text="Full Name:" GridPane.rowIndex="4" />
+                                                <TextField fx:id="editNameField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                                <Label text="Gender:" GridPane.rowIndex="5" />
+                                                <ChoiceBox fx:id="editGenderChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                                                <Label text="Address:" GridPane.rowIndex="6" />
+                                                <TextField fx:id="editAddressField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                                                <Label text="Email:" GridPane.rowIndex="7" />
+                                                <TextField fx:id="editEmailField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                                                <Label text="Phone Number:" GridPane.rowIndex="8" />
+                                                <TextField fx:id="editNomerHpField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+                                                <Label text="Role:" GridPane.rowIndex="9" />
+                                                <ChoiceBox fx:id="editRoleChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+                                            </children>
+                                        </GridPane>
+
+                                        <HBox spacing="10">
+                                            <Button fx:id="updateUserButton" onAction="#handleUpdateUser" text="Update User" />
+                                            <Button fx:id="deleteUserButton" onAction="#handleDeleteUser" text="Delete User" />
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Classes">
+                    <content>
+                        <GridPane hgap="20.0" vgap="10.0">
+                            <padding><Insets top="15" right="15" bottom="15" left="15" /></padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                                    <children>
+                                        <Label text="Create / Update Class">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <GridPane hgap="10" vgap="5">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="NEVER" />
+                                                <ColumnConstraints hgrow="ALWAYS" />
+                                            </columnConstraints>
+                                            <children>
+                                                <Label text="Class Name:" GridPane.rowIndex="0" />
+                                                <TextField fx:id="newClassNameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                                <Label text="Description:" GridPane.rowIndex="1" />
+                                                <TextField fx:id="newClassDescriptionField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="Wali Kelas:" GridPane.rowIndex="2" />
+                                                <ChoiceBox fx:id="newClassWaliKelasChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="Semester:" GridPane.rowIndex="3" />
+                                                <ChoiceBox fx:id="newClassSemesterChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            </children>
+                                        </GridPane>
+                                        <HBox spacing="10">
+                                            <Button onAction="#handleCreateClass" text="Create New Class" />
+                                            <Button fx:id="updateClassButton" onAction="#handleUpdateClass" text="Update Selected Class" />
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                                    <children>
+                                        <Label text="Select Class to Edit / Delete">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <ChoiceBox fx:id="editClassChoiceBox" prefWidth="350" />
+                                        <Button fx:id="deleteClassButton" onAction="#handleDeleteClass" text="Delete Selected Class" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Students in Class">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Assign Student:"/>
+                                        <ChoiceBox fx:id="assignStudentToClassChoiceBox" prefWidth="250.0"/>
+                                        <Label text="to Class:"/>
+                                        <ChoiceBox fx:id="studentClassFilterChoiceBox" prefWidth="250.0"/>
+                                        <Label text="Year:" />
+                                        <ChoiceBox fx:id="studentFilterYearsChoiceBox" prefWidth="120.0" />
+                                        <Button fx:id="assignStudentToClassButton" onAction="#handleAssignStudentToClass" text="Assign"/>
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="deleteStudentFromClassButton" onAction="#handleDeleteStudentFromClass" text="Remove Selected Student from Class"/>
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="studentInClassTableView" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="studentNameInClassColumn" prefWidth="250.0" text="Student Name"/>
+                                        <TableColumn fx:id="nisNipInClassColumn" prefWidth="150.0" text="NIS/NIP"/>
+                                        <TableColumn fx:id="studentUserIdInClassColumn" prefWidth="150.0" text="User ID"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Subjects">
+                    <content>
+                        <GridPane hgap="20" vgap="10">
+                            <padding><Insets top="15" right="15" bottom="15" left="15" /></padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <children>
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;">
+                                    <children>
+                                        <Label text="Add New Subject">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <GridPane hgap="10" vgap="5">
+                                            <columnConstraints><ColumnConstraints/><ColumnConstraints hgrow="ALWAYS"/></columnConstraints>
+                                            <children>
+                                                <Label text="Subject Name:" GridPane.rowIndex="0" />
+                                                <TextField fx:id="newSubjectNameField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                                <Label text="Category:" GridPane.rowIndex="1" />
+                                                <ChoiceBox fx:id="newCategoryChoiceBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            </children>
+                                        </GridPane>
+                                        <Button fx:id="addSubjectButton" onAction="#handleAddSubject" text="Add Subject" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="10.0" style="-fx-border-color: #dedede; -fx-padding: 10; -fx-border-radius: 5;" GridPane.columnIndex="1">
+                                    <children>
+                                        <Label text="Assign Teacher to Subject">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <GridPane hgap="10" vgap="5">
+                                            <columnConstraints><ColumnConstraints/><ColumnConstraints hgrow="ALWAYS"/></columnConstraints>
+                                            <children>
+                                                <Label text="Subject:" GridPane.rowIndex="0" />
+                                                <ChoiceBox fx:id="assignTeacherSubjectChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                                <Label text="Class:" GridPane.rowIndex="1" />
+                                                <ChoiceBox fx:id="assignTeacherClassChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label text="Teacher (Guru):" GridPane.rowIndex="2" />
+                                                <ChoiceBox fx:id="assignTeacherGuruChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            </children>
+                                        </GridPane>
+                                        <Button fx:id="assignTeacherButton" onAction="#handleAssignTeacherToSubject" text="Assign Teacher" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                                    <Label text="Current Subject Assignments">
+                                        <font><Font name="System Bold" size="14.0" /></font>
+                                    </Label>
+                                    <TableView fx:id="subjectAssignmentTable" prefHeight="200.0" prefWidth="200.0">
+                                        <columns>
+                                            <TableColumn fx:id="assignmentSubjectColumn" prefWidth="200.0" text="Subject" />
+                                            <TableColumn fx:id="assignmentClassColumn" prefWidth="200.0" text="Class" />
+                                            <TableColumn fx:id="assignmentTeacherColumn" prefWidth="200.0" text="Teacher" />
+                                        </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteAssignmentButton" onAction="#handleDeleteSubjectAssignment" text="Delete Selected Assignment" />
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Schedules">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <Label text="Add New Schedule">
+                                    <font><Font name="System Bold" size="14.0" /></font>
+                                </Label>
+                                <GridPane hgap="10.0" vgap="5.0">
+                                    <children>
+                                        <Label text="Day:" GridPane.rowIndex="0" />
+                                        <ChoiceBox fx:id="scheduleDayChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                                        <Label text="Start Time:" GridPane.rowIndex="1" />
+                                        <TextField fx:id="scheduleStartTimeField" promptText="HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="End Time:" GridPane.rowIndex="2" />
+                                        <TextField fx:id="scheduleEndTimeField" promptText="HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label text="Subject:" GridPane.rowIndex="3" />
+                                        <ChoiceBox fx:id="scheduleSubjectChoiceBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label text="Class:" GridPane.rowIndex="4" />
+                                        <ChoiceBox fx:id="scheduleClassChoiceBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints />
+                                        <ColumnConstraints />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                </GridPane>
+                                <Button onAction="#handleAddSchedule" text="Add Schedule" />
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="View All Users">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Filter by Role:"/>
+                                        <ChoiceBox fx:id="allUsersFilterRoleChoiceBox" prefWidth="150.0"/>
+                                        <Label text="Filter by Name/ID:"/>
+                                        <TextField fx:id="allUsersFilterNameField" promptText="Enter name, username, or NIS/NIP"/>
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="allUsersTableView" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="tableUserIdColumn" prefWidth="100.0" text="User ID"/>
+                                        <TableColumn fx:id="tableUsernameColumn" prefWidth="120.0" text="Username"/>
+                                        <TableColumn fx:id="tableNisNipColumn" prefWidth="120.0" text="NIS/NIP"/>
+                                        <TableColumn fx:id="tableNamaColumn" prefWidth="200.0" text="Name"/>
+                                        <TableColumn fx:id="tableGenderColumn" prefWidth="75.0" text="Gender"/>
+                                        <TableColumn fx:id="tableAlamatColumn" prefWidth="250.0" text="Address"/>
+                                        <TableColumn fx:id="tableEmailColumn" prefWidth="200.0" text="Email"/>
+                                        <TableColumn fx:id="tableNomerHpColumn" prefWidth="120.0" text="Phone"/>
+                                        <TableColumn fx:id="tableRoleColumn" prefWidth="120.0" text="Role"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Announcements">
+                    <content>
+                        <VBox spacing="10" style="-fx-padding: 15;">
+                            <Label text="Manage Announcements">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextArea fx:id="announcementTextArea" prefHeight="100.0" promptText="Enter announcement..."/>
+                            <HBox spacing="10">
+                                <Button fx:id="createAnnouncementButton" onAction="#handleCreateAnnouncement" text="Create New Announcement"/>
+                                <Button fx:id="updateAnnouncementButton" onAction="#handleUpdateAnnouncement" text="Update Selected"/>
+                                <Button fx:id="deleteAnnouncementButton" onAction="#handleDeleteAnnouncement" text="Delete Selected"/>
+                            </HBox>
+                            <TableView fx:id="announcementTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="announcementWaktuColumn" prefWidth="150.0" text="Time"/>
+                                    <TableColumn fx:id="announcementContentColumn" prefWidth="750.0" text="Content"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

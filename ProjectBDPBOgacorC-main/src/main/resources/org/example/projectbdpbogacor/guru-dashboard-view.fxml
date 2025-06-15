@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectbdpbogacor.Guru.GurudsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <children>
+                <Label fx:id="welcomeUserLabel" text="Welcome, Guru!">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleLogout" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="guruTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Class Schedule">
+                    <content>
+                        <VBox spacing="10" style="-fx-padding: 15;">
+                            <children>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <Label text="Filter by Class:"/>
+                                    <ChoiceBox fx:id="scheduleClassChoiceBox" prefWidth="250.0"/>
+                                    <Label text="Filter by Subject:"/>
+                                    <ChoiceBox fx:id="scheduleSubjectChoiceBox" prefWidth="200.0"/>
+                                    <Button onAction="#loadJadwalKelas" text="View Schedule"/>
+                                </HBox>
+                                <TableView fx:id="jadwalKelasTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="hariColumn" text="Day"/>
+                                        <TableColumn fx:id="jamMulaiColumn" text="Start Time"/>
+                                        <TableColumn fx:id="jamSelesaiColumn" text="End Time"/>
+                                        <TableColumn fx:id="namaMapelColumn" text="Subject"/>
+                                        <TableColumn fx:id="namaKelasJadwalColumn" text="Class"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Input Grades">
+                    <content>
+                        <HBox spacing="20" style="-fx-padding: 15;">
+                            <children>
+                                <VBox spacing="10" HBox.hgrow="NEVER">
+                                    <Label text="Input/Update Grade">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <GridPane hgap="10" vgap="5">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Class:" GridPane.rowIndex="0"/>
+                                            <ChoiceBox fx:id="gradeClassChoiceBox" prefWidth="250" GridPane.columnIndex="1"/>
+                                            <Label text="Subject:" GridPane.rowIndex="1"/>
+                                            <ChoiceBox fx:id="gradeSubjectChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                            <Label text="Student:" GridPane.rowIndex="2"/>
+                                            <ChoiceBox fx:id="gradeStudentChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                            <Label text="Semester:" GridPane.rowIndex="3"/>
+                                            <ChoiceBox fx:id="gradeSemesterChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                            <Label text="Grade Type:" GridPane.rowIndex="4"/>
+                                            <ChoiceBox fx:id="gradeTypeChoiseBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                            <Label text="Score (0-100):" GridPane.rowIndex="5"/>
+                                            <TextField fx:id="scoreField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                        </children>
+                                    </GridPane>
+                                    <HBox spacing="10">
+                                        <Button fx:id="submitGradeButton" onAction="#handleSubmitGrade" text="Submit New Grade"/>
+                                        <Button fx:id="updateGradeButton" onAction="#handleUpdateGrade" text="Update Selected Grade"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                    <Label text="Existing Grades for Selected Student/Subject/Semester">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <TableView fx:id="existingGradesTable">
+                                        <columns>
+                                            <TableColumn fx:id="existingJenisNilaiColumn" text="Grade Type"/>
+                                            <TableColumn fx:id="existingNamaMapelColumn" text="Subject"/>
+                                            <TableColumn fx:id="existingNilaiColumn" text="Score"/>
+                                        </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteGradeButton" onAction="#handleDeleteGrade" text="Delete Selected Grade"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Assignments">
+                    <content>
+                        <HBox spacing="20" style="-fx-padding: 15;">
+                            <children>
+                                <VBox spacing="10" HBox.hgrow="NEVER">
+                                    <Label text="Add/Update Assignment">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <GridPane hgap="10" vgap="5">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Class:" GridPane.rowIndex="0"/>
+                                            <ChoiceBox fx:id="tugasClassChoiceBox" prefWidth="250" GridPane.columnIndex="1"/>
+                                            <Label text="Subject:" GridPane.rowIndex="1"/>
+                                            <ChoiceBox fx:id="tugasSubjectChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                            <Label text="Description:" GridPane.rowIndex="2"/>
+                                            <TextArea fx:id="tugasKeteranganArea" prefHeight="100" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                            <Label text="Deadline:" GridPane.rowIndex="3"/>
+                                            <DatePicker fx:id="tugasDeadlinePicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                        </children>
+                                    </GridPane>
+                                    <HBox spacing="10">
+                                        <Button fx:id="addTugasButton" onAction="#handleAddTugas" text="Add Assignment"/>
+                                        <Button fx:id="updateTugasButton" onAction="#handleUpdateTugas" text="Update Selected"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                    <Label text="Existing Assignments">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <TableView fx:id="tugasTable">
+                                        <columns>
+                                            <TableColumn fx:id="tugasKeteranganColumn" text="Description" prefWidth="200"/>
+                                            <TableColumn fx:id="tugasDeadlineColumn" text="Deadline"/>
+                                            <TableColumn fx:id="tugasTanggalRilisColumn" text="Released Date"/>
+                                            <TableColumn fx:id="tugasMapelColumn" text="Subject"/>
+                                            <TableColumn fx:id="tugasKelasColumn" text="Class"/>
+                                        </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteTugasButton" onAction="#handleDeleteTugas" text="Delete Selected"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Materials">
+                    <content>
+                        <HBox spacing="20" style="-fx-padding: 15;">
+                            <children>
+                                <VBox spacing="10" HBox.hgrow="NEVER">
+                                    <Label text="Add/Update Material">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <GridPane hgap="10" vgap="5">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Class:" GridPane.rowIndex="0"/>
+                                            <ChoiceBox fx:id="materiClassChoiceBox" prefWidth="250" GridPane.columnIndex="1"/>
+                                            <Label text="Subject:" GridPane.rowIndex="1"/>
+                                            <ChoiceBox fx:id="materiSubjectChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                            <Label text="Material Name:" GridPane.rowIndex="2"/>
+                                            <TextField fx:id="materiNamaMateriField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                        </children>
+                                    </GridPane>
+                                    <HBox spacing="10">
+                                        <Button fx:id="addMateriButton" onAction="#handleAddMateri" text="Add Material"/>
+                                        <Button fx:id="updateMateriButton" onAction="#handleUpdateMateri" text="Update Selected"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                    <Label text="Existing Materials">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <TableView fx:id="materiTable">
+                                        <columns>
+                                            <TableColumn fx:id="materiNamaMateriColumn" text="Material Name" prefWidth="200"/>
+                                            <TableColumn fx:id="materiMapelColumn" text="Subject"/>
+                                            <TableColumn fx:id="materiKelasColumn" text="Class"/>
+                                        </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteMateriButton" onAction="#handleDeleteMateri" text="Delete Selected"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Exams">
+                    <content>
+                        <HBox spacing="20" style="-fx-padding: 15;">
+                            <children>
+                                <VBox spacing="10" HBox.hgrow="NEVER">
+                                    <Label text="Add/Update Exam">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <GridPane hgap="10" vgap="5">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <children>
+                                            <Label text="Class:" GridPane.rowIndex="0"/>
+                                            <ChoiceBox fx:id="ujianClassChoiceBox" prefWidth="250" GridPane.columnIndex="1"/>
+                                            <Label text="Subject:" GridPane.rowIndex="1"/>
+                                            <ChoiceBox fx:id="ujianSubjectChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                            <Label text="Exam Type:" GridPane.rowIndex="2"/>
+                                            <ChoiceBox fx:id="ujianJenisUjianChoiceBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                            <Label text="Date:" GridPane.rowIndex="3"/>
+                                            <DatePicker fx:id="ujianTanggalPicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                        </children>
+                                    </GridPane>
+                                    <HBox spacing="10">
+                                        <Button fx:id="addUjianButton" onAction="#handleAddUjian" text="Add Exam"/>
+                                        <Button fx:id="updateUjianButton" onAction="#handleUpdateUjian" text="Update Selected"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                    <Label text="Existing Exams">
+                                        <font><Font name="System Bold" size="14.0"/></font>
+                                    </Label>
+                                    <TableView fx:id="ujianTable">
+                                        <columns>
+                                            <TableColumn fx:id="ujianJenisColumn" text="Exam Type"/>
+                                            <TableColumn fx:id="ujianTanggalColumn" text="Date"/>
+                                            <TableColumn fx:id="ujianMapelColumn" text="Subject"/>
+                                            <TableColumn fx:id="ujianKelasColumn" text="Class"/>
+                                        </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteUjianButton" onAction="#handleDeleteUjian" text="Delete Selected"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Manage Absensi">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Class:"/>
+                                        <ChoiceBox fx:id="absensiClassChoiceBox" prefWidth="200.0"/>
+                                        <Label text="Subject:"/>
+                                        <ChoiceBox fx:id="absensiSubjectChoiceBox" prefWidth="150.0"/>
+                                        <Label text="Student:"/>
+                                        <ChoiceBox fx:id="absensiStudentChoiceBox" prefWidth="200.0"/>
+                                        <Label text="Date:"/>
+                                        <DatePicker fx:id="absensiDatePicker"/>
+                                        <Label text="Status:"/>
+                                        <ChoiceBox fx:id="absensiStatusChoiceBox" prefWidth="100.0"/>
+                                        <Button fx:id="recordAbsensiButton" onAction="#recordAbsensi" text="Record/Update"/>
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="absensiTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="absensiTanggalColumn" prefWidth="150.0" text="Date &amp; Time"/>
+                                        <TableColumn fx:id="absensiStatusColumn" prefWidth="100.0" text="Status"/>
+                                        <TableColumn fx:id="absensiMapelColumn" prefWidth="150.0" text="Subject"/>
+                                        <TableColumn fx:id="absensiKelasColumn" prefWidth="150.0" text="Class"/>
+                                        <TableColumn fx:id="absensiJamMulaiColumn" prefWidth="100.0" text="Start Time"/>
+                                        <TableColumn fx:id="absensiJamSelesaiColumn" prefWidth="100.0" text="End Time"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Announcements">
+                    <content>
+                        <VBox spacing="10" style="-fx-padding: 15;">
+                            <Label text="View Announcements">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TableView fx:id="guruAnnouncementTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="guruAnnouncementWaktuColumn" prefWidth="150.0" text="Time"/>
+                                    <TableColumn fx:id="guruAnnouncementContentColumn" prefWidth="750.0" text="Content"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

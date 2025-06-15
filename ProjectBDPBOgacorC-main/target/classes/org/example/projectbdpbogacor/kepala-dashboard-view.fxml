@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectbdpbogacor.Kepala.KepaladsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <children>
+                <Label fx:id="welcomeUserLabel" text="Welcome, Kepala Sekolah!">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleLogout" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="kepalaTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="View All Users">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Label text="Filter by Role:"/>
+                                        <ChoiceBox fx:id="filterRoleChoiceBox" prefWidth="150.0"/>
+                                        <Label text="Filter by Name/ID:"/>
+                                        <TextField fx:id="filterNameField" promptText="Enter name, username, or NIS/NIP"/>
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="allUsersTableView" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="tableUserIdColumn" prefWidth="100.0" text="User ID"/>
+                                        <TableColumn fx:id="tableUsernameColumn" prefWidth="120.0" text="Username"/>
+                                        <TableColumn fx:id="tableNisNipColumn" prefWidth="120.0" text="NIS/NIP"/>
+                                        <TableColumn fx:id="tableNamaColumn" prefWidth="200.0" text="Name"/>
+                                        <TableColumn fx:id="tableGenderColumn" prefWidth="75.0" text="Gender"/>
+                                        <TableColumn fx:id="tableAlamatColumn" prefWidth="250.0" text="Address"/>
+                                        <TableColumn fx:id="tableEmailColumn" prefWidth="200.0" text="Email"/>
+                                        <TableColumn fx:id="tableNomerHpColumn" prefWidth="120.0" text="Phone"/>
+                                        <TableColumn fx:id="tableRoleColumn" prefWidth="120.0" text="Role"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Announcements">
+                    <content>
+                        <VBox spacing="10" style="-fx-padding: 15;">
+                            <Label text="Manage Announcements">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextArea fx:id="announcementTextArea" prefHeight="100.0" promptText="Enter announcement..."/>
+                            <HBox spacing="10">
+                                <Button fx:id="createAnnouncementButton" onAction="#handleCreateAnnouncement" text="Create New Announcement"/>
+                                <Button fx:id="updateAnnouncementButton" onAction="#handleUpdateAnnouncement" text="Update Selected"/>
+                                <Button fx:id="deleteAnnouncementButton" onAction="#handleDeleteAnnouncement" text="Delete Selected"/>
+                            </HBox>
+                            <TableView fx:id="announcementTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="announcementWaktuColumn" prefWidth="150.0" text="Time"/>
+                                    <TableColumn fx:id="announcementContentColumn" prefWidth="750.0" text="Content"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

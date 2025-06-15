@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectbdpbogacor.Siswa.SiswadsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <children>
+                <Label fx:id="welcomeUserLabel" text="Welcome, Siswa!">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleLogout" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="siswaTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Biodata">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 25;">
+                            <children>
+                                <Label text="My Biodata">
+                                    <font><Font name="System Bold" size="18.0"/></font>
+                                </Label>
+                                <GridPane hgap="10" vgap="8">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="120"/>
+                                        <ColumnConstraints hgrow="ALWAYS"/>
+                                    </columnConstraints>
+                                    <children>
+                                        <Label text="User ID:" GridPane.rowIndex="0"/>
+                                        <Label fx:id="userIdLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                        <Label text="Username:" GridPane.rowIndex="1"/>
+                                        <Label fx:id="usernameLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                        <Label text="NIS/NIP:" GridPane.rowIndex="2"/>
+                                        <Label fx:id="nisNipLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                        <Label text="Full Name:" GridPane.rowIndex="3"/>
+                                        <Label fx:id="nameLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                        <Label text="Gender:" GridPane.rowIndex="4"/>
+                                        <Label fx:id="genderLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                        <Label text="Address:" GridPane.rowIndex="5"/>
+                                        <Label fx:id="addressLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                        <Label text="Email:" GridPane.rowIndex="6"/>
+                                        <Label fx:id="emailLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                        <Label text="Phone Number:" GridPane.rowIndex="7"/>
+                                        <Label fx:id="phoneLabel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Jadwal Kelas">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="jadwalKelasTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="hariColumn" prefWidth="100.0" text="Day"/>
+                                    <TableColumn fx:id="jamMulaiColumn" prefWidth="100.0" text="Start Time"/>
+                                    <TableColumn fx:id="jamSelesaiColumn" prefWidth="100.0" text="End Time"/>
+                                    <TableColumn fx:id="namaMapelColumn" prefWidth="200.0" text="Subject"/>
+                                    <TableColumn fx:id="namaKelasJadwalColumn" prefWidth="150.0" text="Class"/>
+                                    <TableColumn fx:id="namaPengajarJadwalColumn" prefWidth="200.0" text="Teacher"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Nilai Ujian">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="nilaiUjianTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="jenisNilaiColumn" prefWidth="150.0" text="Grade Type"/>
+                                    <TableColumn fx:id="namaMapelNilaiColumn" prefWidth="250.0" text="Subject"/>
+                                    <TableColumn fx:id="existingNilaiColumn" prefWidth="100.0" text="Score"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Tugas">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="tugasTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="keteranganTugasColumn" prefWidth="300.0" text="Description"/>
+                                    <TableColumn fx:id="deadlineTugasColumn" prefWidth="150.0" text="Deadline"/>
+                                    <TableColumn fx:id="tanggalRilisTugasColumn" prefWidth="150.0" text="Released"/>
+                                    <TableColumn fx:id="mapelTugasColumn" prefWidth="200.0" text="Subject"/>
+                                    <TableColumn fx:id="kelasTugasColumn" prefWidth="150.0" text="Class"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Materi">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="materiTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="namaMateriColumn" prefWidth="300.0" text="Material"/>
+                                    <TableColumn fx:id="mapelMateriColumn" prefWidth="200.0" text="Subject"/>
+                                    <TableColumn fx:id="kelasMateriColumn" prefWidth="150.0" text="Class"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Ujian">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="ujianTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="jenisUjianColumn" prefWidth="150.0" text="Exam Type"/>
+                                    <TableColumn fx:id="tanggalUjianColumn" prefWidth="150.0" text="Date"/>
+                                    <TableColumn fx:id="mapelUjianColumn" prefWidth="200.0" text="Subject"/>
+                                    <TableColumn fx:id="kelasUjianColumn" prefWidth="150.0" text="Class"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Absensi">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="absensiTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="tanggalAbsensiColumn" prefWidth="150.0" text="Date &amp; Time"/>
+                                    <TableColumn fx:id="statusAbsensiColumn" prefWidth="100.0" text="Status"/>
+                                    <TableColumn fx:id="mapelAbsensiColumn" prefWidth="200.0" text="Subject"/>
+                                    <TableColumn fx:id="kelasAbsensiColumn" prefWidth="150.0" text="Class"/>
+                                    <TableColumn fx:id="jamMulaiAbsensiColumn" prefWidth="100.0" text="Start Time"/>
+                                    <TableColumn fx:id="jamSelesaiAbsensiColumn" prefWidth="100.0" text="End Time"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Pengumuman">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <TableView fx:id="announcementTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="announcementWaktuColumn" prefWidth="150.0" text="Time"/>
+                                    <TableColumn fx:id="announcementContentColumn" prefWidth="750.0" text="Content"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

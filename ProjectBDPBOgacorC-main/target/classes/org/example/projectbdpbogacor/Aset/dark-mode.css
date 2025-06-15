@@ -1,0 +1,168 @@
+/* MODERN DARK THEME - FINAL TAB FONT FIX */
+
+.root {
+    -fx-background-color: #2b2b2b;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #dcdcdc;
+}
+
+.main-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f5f5f5;
+}
+
+.login-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #444444;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 15, 0, 0, 3);
+}
+.login-card .label { -fx-text-fill: #333333; }
+.login-card .welcome-label { -fx-font-weight: bold; -fx-text-fill: #2c3e50; }
+.login-card .prompt-label { -fx-text-fill: #888888; }
+
+.button, .toggle-button {
+    -fx-background-color: #0a84ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+}
+.button:hover, .toggle-button:hover {
+    -fx-background-color: #3b9bff;
+}
+
+.button-logout {
+    -fx-background-color: #ff453a;
+}
+.button-logout:hover {
+    -fx-background-color: #d02a22;
+}
+
+.text-field, .password-field, .text-area {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #dcdcdc;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #8c8c8c;
+}
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: #0a84ff;
+    -fx-border-width: 2px;
+}
+
+.choice-box {
+    -fx-background-color: #3c3f41;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-mark-color: #0a84ff;
+}
+.choice-box > .label {
+    -fx-text-fill: #dcdcdc;
+}
+.choice-box .context-menu {
+    -fx-background-color: #3c3f41;
+}
+.choice-box .menu-item:focused {
+    -fx-background-color: #4f4f4f;
+}
+.choice-box .menu-item > .label {
+    -fx-text-fill: #dcdcdc;
+}
+
+/* ====================================================== */
+/* == PERBAIKAN FINAL DAN TEGAS UNTUK FONT TAB == */
+/* ====================================================== */
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #3c3f41;
+    -fx-padding: 8px 20px;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+/* Mengatur warna dasar untuk SEMUA label di dalam tab */
+.tab-pane .tab .label {
+    -fx-text-fill: #c0c0c0; /* Warna abu-abu terang */
+}
+
+/* Mengatur warna untuk tab yang TIDAK aktif saat mouse di atasnya */
+.tab-pane .tab:hover .label {
+    -fx-text-fill: #ffffff; /* Menjadi putih terang saat disorot */
+}
+
+/* Mengatur warna untuk tab yang AKTIF/TERPILIH */
+.tab-pane .tab:selected {
+    -fx-background-color: #2b2b2b; /* Warna latar belakang sama dengan root */
+    -fx-border-color: #555555;
+    -fx-border-width: 1px 1px 0 1px;
+}
+.tab-pane .tab:selected .label {
+    -fx-text-fill: #0a84ff; /* Warna biru aksen agar sangat menonjol */
+    -fx-font-weight: bold;
+}
+
+.tab-pane > .tab-content-area {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 15px;
+    -fx-border-color: #555555;
+    -fx-border-width: 0 1px 1px 1px;
+}
+/* ====================================================== */
+/* == AKHIR DARI PERBAIKAN == */
+/* ====================================================== */
+
+.table-view {
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+}
+.table-view .column-header-background {
+    -fx-background-color: #3c3f41;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #dcdcdc;
+}
+.table-view .cell{
+    -fx-border-color: transparent;
+    -fx-padding: 8px;
+    -fx-text-fill: #dcdcdc;
+}
+.table-row-cell:odd {
+    -fx-background-color: #2b2b2b;
+}
+.table-row-cell:even{
+    -fx-background-color: #313131;
+}
+.table-row-cell:selected {
+    -fx-background-color: #0a84ff;
+}
+.table-row-cell:selected .text {
+    -fx-fill: white;
+}
+
+.form-panel {
+    -fx-padding: 15px;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-background-color: #3c3f41;
+}
+.form-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f5f5f5;
+}

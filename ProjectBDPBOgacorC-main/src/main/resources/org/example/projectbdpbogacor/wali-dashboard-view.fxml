@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projectbdpbogacor.Wali.WalidsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <children>
+                <Label fx:id="welcomeUserLabel" text="Welcome, Wali Kelas!">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handleLogout" text="Logout" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="waliTabPane" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Student Attendance">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label fx:id="attendanceClassNameLabel" text="Class: Not Assigned">
+                                            <font><Font name="System Bold" size="14.0"/></font>
+                                        </Label>
+                                        <Label text="Filter by Student:"/>
+                                        <ChoiceBox fx:id="attendanceStudentChoiceBox" prefWidth="250.0"/>
+                                    </children>
+                                </HBox>
+                                <TableView fx:id="absensiTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="studentNameAbsensiColumn" prefWidth="150.0" text="Student Name"/>
+                                        <TableColumn fx:id="tanggalAbsensiColumn" prefWidth="150.0" text="Date &amp; Time"/>
+                                        <TableColumn fx:id="statusAbsensiColumn" prefWidth="100.0" text="Status"/>
+                                        <TableColumn fx:id="mapelAbsensiColumn" prefWidth="150.0" text="Subject"/>
+                                        <TableColumn fx:id="kelasAbsensiColumn" prefWidth="150.0" text="Class"/>
+                                        <TableColumn fx:id="jamMulaiAbsensiColumn" prefWidth="100.0" text="Start Time"/>
+                                        <TableColumn fx:id="jamSelesaiAbsensiColumn" prefWidth="100.0" text="End Time"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Print Report Card">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label fx:id="raporClassNameLabel" text="Class: Not Assigned">
+                                            <font><Font name="System Bold" size="14.0"/></font>
+                                        </Label>
+                                        <Label text="Select Student:"/>
+                                        <ChoiceBox fx:id="raporStudentChoiceBox" prefWidth="250.0"/>
+                                        <Label text="Select Semester:"/>
+                                        <ChoiceBox fx:id="raporSemesterChoiceBox" prefWidth="200.0"/>
+                                        <Button onAction="#handlePrintReportCard" text="Print Report Card"/>
+                                    </children>
+                                </HBox>
+                                <Label text="Exam &amp; Assignment Grades for Selected Student/Semester"/>
+                                <TableView fx:id="nilaiUjianTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="jenisNilaiColumn" prefWidth="150.0" text="Grade Type"/>
+                                        <TableColumn fx:id="namaMapelNilaiColumn" prefWidth="200.0" text="Subject"/>
+                                        <TableColumn fx:id="nilaiColumn" prefWidth="100.0" text="Score"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Student List">
+                    <content>
+                        <VBox spacing="10.0" style="-fx-padding: 15;">
+                            <children>
+                                <Label fx:id="studentListClassNameLabel" text="Class: Not Assigned">
+                                    <font><Font name="System Bold" size="14.0"/></font>
+                                </Label>
+                                <TableView fx:id="studentListTable" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="studentListNameColumn" prefWidth="200.0" text="Name"/>
+                                        <TableColumn fx:id="studentListGenderColumn" prefWidth="100.0" text="Gender"/>
+                                        <TableColumn fx:id="studentListNISNIPColumn" prefWidth="120.0" text="NIS/NIP"/>
+                                        <TableColumn fx:id="studentListAddressColumn" prefWidth="250.0" text="Address"/>
+                                        <TableColumn fx:id="studentListPhoneNumberColumn" prefWidth="120.0" text="Phone"/>
+                                        <TableColumn fx:id="studentListEmailColumn" prefWidth="200.0" text="Email"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
